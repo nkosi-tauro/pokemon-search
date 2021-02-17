@@ -28,7 +28,7 @@
             </div>
           </div>
           <div class="text-center md:w-1/2 px-5">
-            <div class="mb-10">
+            <div class="mb-5">
               <h1 class="font-bold uppercase text-2xl mb-5">
                 {{ pokemon.name }}
               </h1>
@@ -40,30 +40,73 @@
               </p>
             </div>
             <div>
-              <div class="align-bottom mr-5">
-                <h2 class="text-blue-800">Types :</h2>
-                <div v-for="(type, idx) in pokemon.types" :key="idx">
-                  <h5
-                    class="inline-block rounded-full text-white bg-red-400 hover:bg-red-500 duration-300 text-xs font-bold mr-1 md:mr-2 mb-2 px-2 md:px-4 py-1 opacity-90 hover:opacity-100"
-                  >
-                    {{ type.type.name }}
-                  </h5>
-                </div>
-                <h2 class="text-blue-800">Abilities :</h2>
-                <div v-for="(ability, idx) in pokemon.abilities" :key="idx">
-                  <h5
-                    class="inline-block rounded-full text-white bg-green-400 hover:bg-red-500 duration-300 text-xs font-bold mr-1 md:mr-2 mb-2 px-2 md:px-4 py-1 opacity-90 hover:opacity-100"
-                  >
-                    {{ ability.ability.name }}
-                  </h5>
-                </div>
+              <!-- Tables : Type, Abilities -->
+              <div class="flex">
+                <table class="border-collapse w-1/2">
+                  <thead>
+                    <tr>
+                      <th
+                        class="p-3 font-bold uppercase bg-gray-200 text-gray-600 hidden lg:table-cell"
+                      >
+                        Types
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      v-for="(type, idx) in pokemon.types"
+                      :key="idx"
+                      class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0"
+                    >
+                      <td
+                        class="w-full lg:w-auto p-3 text-gray-800 text-center block lg:table-cell relative lg:static"
+                      >
+                        {{ type.type.name }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table class="float-right border-collapse w-1/2">
+                  <thead>
+                    <tr>
+                      <th
+                        class="p-3 font-bold uppercase bg-gray-200 text-gray-600"
+                      >
+                        Abilities
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      v-for="(ability, idx) in pokemon.abilities"
+                      :key="idx"
+                      class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0"
+                    >
+                      <td
+                        class="w-full lg:w-auto p-3 text-gray-800 text-center block lg:table-cell relative lg:static"
+                      >
+                        {{ ability.ability.name }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              <div class="inline-block align-bottom">
-                <!-- <button
-                  class="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-full px-10 py-2 font-semibold"
-                >
-                  <i class="mdi mdi-cart -ml-2 mr-2"></i> BUY NOW
-                </button> -->
+              <!-- Games  -->
+              <div class="grid grid-cols-2 mt-4 my-auto">
+                <div class="col-span-12 lg:col-span-8">
+                  <span>Games :</span>
+                  <ul>
+                    <li>
+                      <h3
+                        v-for="(games, idx) in pokemon.game_indices"
+                        :key="idx"
+                        class="inline-block rounded-full text-white bg-blue-400 hover:bg-red-500 duration-300 text-xs font-bold mr-1 md:mr-2 mb-2 px-2 md:px-4 py-1 opacity-90 hover:opacity-100"
+                      >
+                        {{ games.version.name }}
+                      </h3>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -95,6 +138,7 @@ export default {
       pokemon: null,
     });
 
+    // get pokemon
     fetch(`https://pokeapi.co/api/v2/pokemon/${route.params.slug}/`)
       .then((res) => res.json())
       .then((data) => {
