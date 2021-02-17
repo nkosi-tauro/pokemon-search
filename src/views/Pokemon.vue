@@ -110,6 +110,8 @@
               </div>
             </div>
           </div>
+
+          <!-- Back Image -->
           <div class="w-full md:w-1/2 px-10 mb-10 md:mb-0">
             <div class="relative">
               <img

@@ -34,7 +34,7 @@ export default {
       if(!state.pokemonSearch){
         return []
       }
-      return state.pokemons.filter((pokemon)=>pokemon.name.includes(state.pokemonSearch))
+      return state.pokemons.filter((pokemon)=>pokemon.name.includes(state.pokemonSearch.toLowerCase()))
     }
     fetch("https://pokeapi.co/api/v2/pokemon?limit=500")
       .then((res) => res.json())
