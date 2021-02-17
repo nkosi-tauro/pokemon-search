@@ -8,7 +8,7 @@
   </div>
   <div class="mt-10 p-4 flex flex-wrap justify-center">
     <div 
-    v-for="(pokemon, idx) in pokemons" :key="idx"
+    v-for="(pokemon, idx) in filteredPokemon" :key="idx"
     class="ml-4 text-2xl text-blue-500">
     {{pokemon.name}}
     </div>
@@ -29,7 +29,10 @@ export default {
     });
 
     function updatePokemon(){
-      
+      if(!state.pokemonSearch){
+        return []
+      }
+      return state.pokemons.filter((pokemon)=>pokemon.name.includes(state.pokemonSearch))
     }
     fetch("https://pokeapi.co/api/v2/pokemon?offset=0")
       .then((res) => res.json())
