@@ -2,14 +2,14 @@
   <div class="w-full flex justify-center">
     <input 
     v-model="pokemonSearch"
-    class="mt-10 p-2 border-blue-600 border-2"
+    class="mt-10 p-2 rounded-md border-blue-600 border-2"
     type="text" 
     placeholder="Enter Pokemon here" />
   </div>
   <div class="mt-10 p-4 flex flex-wrap justify-center">
-    <div 
+  <div 
     v-for="(pokemon, idx) in filteredPokemon" :key="idx"
-    class="ml-4 text-2xl text-blue-500">
+    class="ml-4 text-2xl text-blue-500 bg-yellow-300">
     <router-link :to="`/pokemon/${urlIdLookup[pokemon.name]}`">
     {{pokemon.name}}
     </router-link>

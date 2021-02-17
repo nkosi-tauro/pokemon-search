@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="bg-yellow-300">
     <div class="p-14">
-      <router-link class="flex justify-center text-4xl text-yellow-700" to="/">
+      <router-link class="flex justify-center text-4xl text-blue-700" to="/">
       Pokemon Search
       </router-link>
     </div>
