@@ -45,7 +45,7 @@
                   <thead>
                     <tr>
                       <th
-                        class="p-3 font-bold uppercase bg-gray-200 text-gray-600 hidden lg:table-cell"
+                        class="p-3 font-bold uppercase bg-gray-200 text-gray-600 lg:table-cell"
                       >
                         Types
                       </th>
@@ -55,7 +55,7 @@
                     <tr
                       v-for="(type, idx) in pokemon.types"
                       :key="idx"
-                      class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0"
+                      class="lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0"
                     >
                       <td
                         class="w-full lg:w-auto p-3 text-gray-800 text-center block lg:table-cell relative lg:static"
