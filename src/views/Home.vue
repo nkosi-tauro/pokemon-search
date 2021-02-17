@@ -10,7 +10,7 @@
     <div 
     v-for="(pokemon, idx) in filteredPokemon" :key="idx"
     class="ml-4 text-2xl text-blue-500">
-    {{pokemon.name}}
+    <router-link :to="`/pokemon/${urlIdLookup[pokemon.name]}`">{{pokemon.name}}</router-link>
     </div>
   </div>
 </template>
@@ -34,7 +34,7 @@ export default {
       }
       return state.pokemons.filter((pokemon)=>pokemon.name.includes(state.pokemonSearch))
     }
-    fetch("https://pokeapi.co/api/v2/pokemon?offset=0")
+    fetch("https://pokeapi.co/api/v2/pokemon?limit=500")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
