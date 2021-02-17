@@ -27,16 +27,15 @@
               ></div>
             </div>
           </div>
-          <div class="text-center md:w-1/2 px-5">
+          <div class=" md:w-1/2 px-5">
             <div class="mb-5">
-              <h1 class="font-bold uppercase text-2xl mb-5">
+              <h1 class=" text-center font-bold uppercase text-2xl mb-5">
                 {{ pokemon.name }}
               </h1>
-              <p class="text-sm">
-                <!-- Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Eos,
-                voluptatum dolorum! Laborum blanditiis consequatur, voluptates,
-                sint enim fugiat saepe, dolor fugit, magnam explicabo eaque quas
-                id quo porro dolorum facilis... -->
+              <!-- Description -->
+              <p  class="text-sm">
+                {{description.flavor_text_entries[0].flavor_text}}
+                <span class="text-sm font-semibold">{{ pokemon.name }}</span> is a <span class="text-sm font-semibold">{{description.generation.name}}</span> pokemon and can be found in <span class="text-sm font-semibold">{{description.habitat.name}}</span> areas.
               </p>
             </div>
             <div>
@@ -91,6 +90,7 @@
                   </tbody>
                 </table>
               </div>
+           
               <!-- Games  -->
               <div class="grid grid-cols-2 mt-4 my-auto">
                 <div class="col-span-12 lg:col-span-8">
@@ -136,6 +136,7 @@ export default {
     const route = useRoute();
     const state = reactive({
       pokemon: null,
+      description : null
     });
 
     // get pokemon
@@ -144,6 +145,13 @@ export default {
       .then((data) => {
         console.log(data);
         state.pokemon = data;
+      });
+      // get flavour desc
+    fetch(`https://pokeapi.co/api/v2/pokemon-species/${route.params.slug}/`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        state.description = data;
       });
 
     return { ...toRefs(state) };
